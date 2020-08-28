@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>org.subra.aem</groupId>
+	<artifactId>subra-aem-apps-structure-fl</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>content-package</packaging>
+	<name>Subra - Repository Structure Package</name>
+	<description>
+        Empty package that defines the structure of the Adobe Experience Manager repository the Code packages in this project deploy into.
+        Any roots in the Code packages of this project should have their parent enumerated in the Filters list below.
+    </description>
+
+	<properties>
+		<build.version>${major.version}.${build.subversion}</build.version>
+		<major.version>1.0</major.version>
+		<build.subversion>${maven.build.timestamp}-SNAPSHOT</build.subversion>
+		<maven.build.timestamp.format>yyMM.ddHHmm</maven.build.timestamp.format>
+	</properties>
+	<profiles>
+		<profile>
+			<id>release</id>
+			<properties>
+				<build.subversion>0</build.subversion>
+			</properties>
+		</profile>
+	</profiles>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.jackrabbit</groupId>
+				<artifactId>filevault-package-maven-plugin</artifactId>
+				<extensions>true</extensions>
+				<version>1.0.3</version>
+				<configuration>
+					<filterSource>src/main/content/META-INF/vault/filter.xml</filterSource>
+					<properties>
+						<cloudManagerTarget>none</cloudManagerTarget>
+					</properties>
+					<filters>
+						<!-- /apps root -->
+						<filter>
+							<root>/apps</root>
+						</filter>
+						<filter>
+							<root>/apps/subra-configs</root>
+						</filter>
+						<filter>
+							<root>/apps/fms</root>
+						</filter>
+
+						<!-- Common overlay roots -->
+						<filter>
+							<root>/apps/sling</root>
+						</filter>
+						<filter>
+							<root>/apps/cq</root>
+						</filter>
+						<filter>
+							<root>/apps/cq/core/content/nav/tools</root>
+						</filter>
+						<filter>
+							<root>/apps/dam</root>
+						</filter>
+						<filter>
+							<root>/apps/wcm</root>
+						</filter>
+						<filter>
+							<root>/apps/msm</root>
+						</filter>
+
+						<!-- Immutable context-aware configurations -->
+						<filter>
+							<root>/apps/settings</root>
+						</filter>
+					</filters>
+					<validatorsSettings>
+
+
+						<jackrabbit-filter>
+							<options>
+								<validRoots>/apps/fms</validRoots>
+							</options>
+						</jackrabbit-filter>
+					</validatorsSettings>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<distributionManagement>
+		<repository>
+			<id>central</id>
+			<name>libs-release</name>
+			<url>https://raghava.jfrog.io/artifactory/libs-release</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshots</id>
+			<name>libs-snapshot</name>
+			<url>https://raghava.jfrog.io/artifactory/libs-snapshot</url>
+		</snapshotRepository>
+	</distributionManagement>
+</project>
