@@ -6,7 +6,7 @@
 
 	<groupId>org.subra.aem</groupId>
 	<artifactId>subra-aem-apps-structure-fl</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<packaging>content-package</packaging>
 	<name>Subra - Repository Structure Package</name>
 	<description>
