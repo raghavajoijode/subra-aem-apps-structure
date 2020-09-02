@@ -6,7 +6,7 @@
 
 	<groupId>org.subra.aem</groupId>
 	<artifactId>subra-aem-apps-structure-fl</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<packaging>content-package</packaging>
 	<name>Subra - Repository Structure Package</name>
 	<description>
@@ -15,10 +15,6 @@
     </description>
 
 	<properties>
-		<build.version>${major.version}.${build.subversion}</build.version>
-		<major.version>1.0</major.version>
-		<build.subversion>${maven.build.timestamp}-SNAPSHOT</build.subversion>
-		<maven.build.timestamp.format>yyMM.ddHHmm</maven.build.timestamp.format>
 	</properties>
 	<profiles>
 		<profile>
@@ -78,15 +74,13 @@
 							<root>/apps/settings</root>
 						</filter>
 					</filters>
-					<validatorsSettings>
-
-
+					<!-- <validatorsSettings>
 						<jackrabbit-filter>
 							<options>
 								<validRoots>/apps/fms</validRoots>
 							</options>
 						</jackrabbit-filter>
-					</validatorsSettings>
+					</validatorsSettings> -->
 				</configuration>
 			</plugin>
 		</plugins>
